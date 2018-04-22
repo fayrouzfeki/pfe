@@ -1,0 +1,62 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overriden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+#
+# More information on profiles: https://jhipster.github.io/profiles/
+# More information on configuration properties: https://jhipster.github.io/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+# See https://github.com/Netflix/Hystrix/wiki/Configuration
+#hystrix:
+#    command:
+#        default:
+#            execution:
+#                isolation:
+#                    thread:
+#                        timeoutInMilliseconds: 10000
+
+
+
+
+spring:
+   
+    application:
+        name: demoo
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: true
+    datasource:
+       
+        url: jdbc:sqlserver://192.168.0.117:1415;database=gcliniqueegypte
+        username: SA
+        password: 123
+    jpa:
+        database-platform: org.hibernate.dialect.SQLServer2012Dialect
+        database: SQL_SERVER
+        open-in-view: false
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+            naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
+            naming:
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            
+        
+server:
+    port: 9500
+    
+liquibase:
+     enabled: false
+
+delete-categorie-without-check: false

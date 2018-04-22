@@ -1,0 +1,90 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.csys.myproject.web.rest;
+
+import com.csys.myproject.dto.CategorieDTO;
+import com.csys.myproject.service.CategorieService;
+import com.csys.myproject.util.RestPreconditions;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collection;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ *
+ * @author Farouk
+ */
+@RestController
+@RequestMapping("/api/categories")
+public class CategorieRessource {
+
+    
+    private final CategorieService categorieService;
+    private static final String ENTITY_NAME = "Categorie";
+
+    public CategorieRessource(CategorieService categorieService) {
+        this.categorieService = categorieService;
+    }
+
+    @GetMapping
+    public Collection<CategorieDTO> findAll() {
+        return categorieService.findAll();
+    }
+
+    @GetMapping("/{id}")
+
+    public CategorieDTO findOne(@PathVariable Long id) {
+        CategorieDTO categorie = categorieService.findOne(id);
+        RestPreconditions.checkFound(categorie, ENTITY_NAME + " not found");
+        return categorieService.findOne(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<CategorieDTO> addCategorie(@Valid @RequestBody CategorieDTO categorie, BindingResult bindingResults) throws URISyntaxException, MethodArgumentNotValidException {
+        if (bindingResults.hasErrors()) {
+            throw new MethodArgumentNotValidException(null, bindingResults);
+        }
+        if (categorie.getCode() != null) {
+            bindingResults.addError(new FieldError(ENTITY_NAME, "code", "Post does not allow a categorie with a code"));
+            throw new MethodArgumentNotValidException(null, bindingResults);
+        }
+        CategorieDTO result = categorieService.add(categorie);
+        return ResponseEntity.created(new URI("/api/categories/" + result.getCode())).body(result);
+    }
+
+    @PutMapping
+    public ResponseEntity<CategorieDTO> updateCategorie(@Valid @RequestBody CategorieDTO categorieDTO,BindingResult bindingResults) throws MethodArgumentNotValidException {
+         if (bindingResults.hasErrors()) {
+            throw new MethodArgumentNotValidException(null, bindingResults);
+        }
+        if (categorieDTO.getCode() == null) {
+            bindingResults.addError(new FieldError(ENTITY_NAME, "code", "Put does not allow a categorie without a code"));
+            throw new MethodArgumentNotValidException(null, bindingResults);
+        }
+        CategorieDTO result = categorieService.update(categorieDTO);
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategorie(@PathVariable Long id) {
+        categorieService.deleteCategorie(id);
+        return ResponseEntity.ok().build();
+
+    }
+}
