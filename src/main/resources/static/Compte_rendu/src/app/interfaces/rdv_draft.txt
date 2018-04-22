@@ -1,0 +1,5 @@
+date_pi: string;//*
+photo: string;//*
+sortie_Salle_Manuelle: String;//*
+user_Entree_Salle: string;//*
+user_Sortie_Salle: string;//*

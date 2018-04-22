@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+.sidebar ,.main-content {
+    margin-right: 190px;
+    margin-left: 190px;
+}
+.sidebar_left {
+    width: 190px;
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar_right {
+    width: 190px;
+    float: right;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.btn-search{
+    width: 60px;
+    height: 61px;
+    margin-top: 20px;
+    padding: 10px 10px 10px 10px;
+    font-size:43px;
+  text-align: center;
+}
+.col-md-1 {
+    width: 4.333%;
+}
+#spacer.col-md-1 {
+    width: 2%;
+}
+
+
+
+.col-md-2 {
+    width: 15.666%;
+}
+
+
+.spacer{
+    width: 1px;
+    background: #000;
+    height: 100px   ;
+    align-content: center;
+}
+
+.container{
+    width: 100%;
+    margin: 15px 20px 15px 20px;
+}
+
+.btn_search > .btn-app, .fa-search{
+    font-size: 40px;
+    width: 62px;
+} 
+
+table {
+    display: block;
+    overflow: scroll;
+}
+
+        /* body {
+            font-family: sans-serif;
+            font-size: 0.9em;
+        } */
+        /* table {
+            border-collapse: collapse;
+            border-bottom: 1px solid #ddd;
+        } */
+        thead {
+            background-color: #333;
+            color: #fff;
+        }
+        thead,tbody {
+            display: block;
+        }
+        /* th,td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            
+            box-sizing: border-box;
+        } */
+        tbody {
+            height: 300px;
+            
+        }

@@ -1,0 +1,284 @@
+<div class="main-content">
+
+<!-- recherhce--------mariem -->
+<div class="row">
+
+          <div class=" col-md-2">
+                    <div class="row">
+                              
+                          <select 
+                           #inter  (change)="getcompte_renduParNomintervenant($event.target.value)">
+                              <option class="dropdown-item" role="presentation" href="#" value="null">Doctor</option>
+                            <option  *ngFor="let i of intervenants">{{i.nomIntervAr}}</option>
+                        </select>   
+                        <label>الطبيب</label>   
+            </div>
+          </div>
+<div class="col-md-1"></div>
+
+          <div class="col-md-2">
+            <div class="row">
+                       <select class="dropdown" #d4 (change)="getcompte_renduParDure($event.target.value)">
+                          <option #op1 class="dropdown-item" role="presentation" href="#"  >التاريخ</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="0">اليوم</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="1">الأمس</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="2">قبل الأمس</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="3">قبل 3 أيام</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="30">اقبل 30 أيام</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="200">اقبل 200 أيام</option>
+                          <option class="dropdown-item" role="presentation" href="#" value="365">اقبل sana أيام</option>
+                          <option #op class="dropdown-item" role="presentation" href="#" value="0" >periode</option>
+                        </select>
+                        <label> : إبتداء من</label>  
+            </div>
+          </div>
+      
+          <div class="col-md-1"></div>
+
+          <div class=" col-md-6">
+
+          <!-- seconde date input (ngIf) -->
+        <div *ngIf="op.selected==true;else elseBlock">
+        <input #d3  type="Date" (change)="getcompte_renduParPeriode(d2.value.toString(),d3.value.toString())">  <label>  :إلى</label> 
+       
+      <input #d2 type="Date" > <label>:من  </label>
+                 
+                          
+      <!-- <input type="search" class="form-control input-sm"  aria-controls="example" #t1 type="text" style="margin:4px;font-size:10px;width:100px;" placeholder="رقم الدخول "  class="form-control"    (change)="getcompte_renduParCodeAdmission($event.target.value,d2.value.toString(),d3.value.toString(),inter.value)">-->
+     
+     
+      </div>
+       
+           <!-- /seconde date input (ngIf) -->
+
+      <!-- info-bull -->
+       <!-- <ng-template #elseBlock> 
+        <div class="element">
+         
+          <div class="infobulle">
+              رقم الدخول
+              رقم المريض 
+               إسم المريض 
+          </div>	
+        </div> 
+        </ng-template> 
+      <!-- /info-bull -->
+
+<!-- entering number -->
+<div class="col-md-14">
+   <input type="search" 
+    #t1 type="text" placeholder="رقم الدخول "  
+    (change)="getcompte_renduParCodeAdmission1($event.target.value,d4.value,inter.value)"
+>
+ 
+<label data-toggle="tooltip" data-placement="right" title="رقم الدخول
+رقم المريض 
+ إسم المريض "> 
+ بحث
+ </label>
+</div>
+<!--/ entering number -->
+
+
+<!-- birthday input -->
+<label> تاريخ الولادة</label>
+<div class="align-items-end col-md-6">
+<input #DN type="Date" name="date" id="date" (change)="getcompte_renduParDatenaissance($event.target.value.toString())"/>                             
+ </div>
+
+<!-- /birthday input -->
+            </div>
+
+</div>
+
+<!-- checkbox zone-- mariem -->
+<div class="row">  
+    
+     <div class="row pull-right">
+       <label>  : حالة تقرير الطبي</label> 
+     </div>
+       <div class="row pull-left" style="right: 5%">
+
+          لم يتم الطباعة
+          <input type="checkbox" id="checkbox3" 
+             name="checkbox3" value="checkbox3" data-md-icheck 
+             (change)="getcompte_renduParImprimer(0)"
+          />     
+
+
+
+          <i class="fa fa-edit " style="font-size:25px"></i>
+       في طور الإنجاز
+      <input type="checkbox"  id="checkbox4" 
+   name="checkbox4" value="checkbox4" data-md-icheck  
+   (change)="getcompte_renduParEcrit()"
+ /> 
+ 
+ <i class="glyphicon glyphicon-pencil"></i>
+  
+     تم الإنجاز
+ <input type="checkbox" id="checkbox5" name="checkbox5" 
+     value="checkbox5"  data-md-icheck (change)="getcompte_rendus(0,0,1)"
+     />    
+
+     <i class="fa fa-check " style="font-size:25px"></i>  
+         تم توقيعه    
+          
+ <input type="checkbox" id="checkbox6" name="checkbox6" 
+ value="checkbox6" data-md-icheck (change)="getcompte_renduParValider(1)"
+ />
+<label>  الحالة  </label>                    
+نهاية الكشف 
+<input type="checkbox" id="checkbox3" name="checkbox3" 
+   value="checkbox3"(change)="getEtatPar_Etat_Patient_Terminer()"
+/>      
+في طور الإنجاز   
+<input type="checkbox" id="checkbox4" name="checkbox4" 
+value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
+/>   
+
+ وصول المريض  
+ <input type="checkbox" id="checkbox5" name="checkbox5" 
+    value="checkbox5" (change)="getEtatParArrive_Patient()"
+ />
+
+   مريض في الإنتظار
+ <input type="checkbox" id="checkbox6" name="checkbox6" 
+     value="checkbox6" data-md-icheck (change)="getEtatPar_Etat_Patient_Attent()"
+ />
+  
+  
+</div>   
+</div>
+
+<!-- table mariem -->
+<div class="container" *ngIf="showTab">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+          <th>actions</th>
+          <th>الدرجة </th>
+          <th> الطبيب المعالج</th>
+          <th> كاتب التقرير</th>
+          <th> عدد الإملاءات</th>
+          <th> status Cr Text</th>
+          <th> المريض المصاب</th>
+          <th> تاريخ الطلب </th>
+          <th>تأكيد الإنجاز </th>
+          <th> الصورة</th>
+          <th>التقني </th>
+          <th>مدة الإنتظار </th>
+          <th>المدة في القاعة </th>
+          <th>الدخول للغرفة</th>
+          <th>رقم الهاتف</th>
+          <th>رقم المريض</th>
+          <th>المركز</th>
+          <th>الطبيب المملي</th>
+          <th>الإتفاقية</th>    
+          <th>رقم الغرفة</th>
+          <th>الساعة</th>                              
+          <th>تاريخ التقرير</th>
+          <th>نوع الدخول</th>
+          <th>الطبيب الواصف</th>
+          <th >الطلب</th>
+          <th>عمرالمريض</th>
+          <th >تاريخ الولادة</th>
+          <th>الجنس</th>
+          <th>المريض</th>
+          <th> رقم الدخول </th>
+          <th>statut</th>
+      </tr>
+    </thead>
+    <tbody > 
+       <tr  *ngFor="let a of compte_rendus" >
+         <!--colonne 30: الدرجة -->
+         <!-- <div class="hidden"> -->
+          <td>
+              <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" 
+                  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <i class="glyphicon glyphicon-menu-hamburger"></i>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <!-- <li (click)="onShowPane("record")"><a> dicter</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li (click)="onShowPane("pdf")"><a> as PDF </a></li> -->
+                  </ul>
+                </div>
+          </td> 
+         <td>{{a.rdv.demande_examen.degre_demande.designation_ar}} </td>
+         <!--colonne 29: الطبيب المعالج -->
+         <td>{{a.rdv.demande_examen.admission.medecin_traitant.nomIntervAr}} </td>
+         <!--colonne 27: التقرير كاتب -->
+         <td>{{a.user_ecrit}} </td>
+         <!--colonne 26: الإملاء عدد -->
+         <td>{{a.nbSeqDicte}}</td>
+         <!--colonne 25:  status Cr Text-->
+         <td>{{a.ecrit}}</td>
+         <!--colonne 24: المريض المصاب   -->
+         <!--colonne 23: الطلب   تاريخ   -->
+         <td> {{a.rdv.date_rdv.year}}/{{a.rdv.date_rdv.month}}/{{a.rdv.date_rdv.dayOfMonth}} {{a.rdv.heure_rdv.hour}}: {{a.rdv.heure_rdv.minute}}:{{a.rdv.heure_rdv.second}}{{a.rdv.heure_rdv.nano}}
+         <!--colonne 22:   الإنجاز تأكيد  -->
+         <td>{{a.valider}}</td>
+         <!--colonne 21:الصورة    -->
+         <td>{{a.rdv.image_archive}} </td>
+         <!--colonne 20: التقني  -->
+         <td>{{a.rdv.code_Technicien}}</td>
+         <!--colonne 19: مدة الإنتظار-->
+         <td>{{(time-a?.rdv?.arrivee_centre?.getTime)/ (1000 * 60 * 60)/1000| number:'1.0-0'}}H</td>                                                             
+         <!--colonne 18:المدة في القاعة  -->
+         <td>{{(time-a?.rdv?.arrivee_centre?.getTime)/ (1000 * 60 * 60)/1000 | number:'1.0-0' }}H</td>          
+         <!--colonne 17:الدخول للغرفة-->
+         <td >{{a?.rdv?.entree_Salle_Manuelle?.hour}}:{{a?.rdv?.entree_Salle_Manuelle?.minute}}</td>
+         <!--colonne 17:رقم الهاتف-->
+         <td>{{a.rdv.demande_examen.admission.tel}} </td>
+         <td>{{a.code_patient}}</td>
+         <!--colonne 15:المركز-->
+         <td>{{a.rdv.code_centre.designationAr}} </td>
+          <!--colonne 14: الطبيب المملي-->
+        <td>{{a?.medecin?.nomInterv}}</td>
+         <td >{{a?.rdv?.demande_examen?.admission?.convention?.societe?.designation_Ar}}</td>
+         <!--colonne 12:رقم الغرفة-->
+         <td>{{a.admission.code_lit}}</td>                             
+         <!--colonne 11:الساعة-->
+         <td>{{a?.rdv?.heure_rdv?.hour}}:{{a?.rdv?.heure_rdv?.minute}}</td>
+       <!--colonne 10:تاريخ التقرير-->
+         <td>{{a.rdv.date_Create.dayOfMonth}}/{{a.rdv.date_Create.month}}/{{a.rdv.date_Create.year}}</td>
+         <!--colonne 13:الإتفاقية-->
+         <!--colonne 9://نوع الدخول-->
+         <td>{{a.rdv.demande_examen.admission.codenature_admission.designation_Ar}}</td>
+         <!--colonne 8:**الطبيب الواصف   -->
+         <!-- medecin pres-->
+         <td>{{a.rdv.demande_examen.medecin_prescripteur.nomInterv}}</td> 
+         <!--colonne 7:الطلب-->
+         <td >{{a.designation}}</td>
+         <!--colonne 6:عمرالمريض**-->
+         <td>{{year-a.rdv.dateNaissance.year}} years</td> 
+         <!--colonne 5: الولادة تاريخ// -->
+         <td>{{a?.rdv?.dateNaissance?.dayOfMonth}}/{{a?.rdv?.dateNaissance?.month}}/{{a?.rdv?.dateNaissance?.year}}</td>
+         <!--colonne 4://الجنس-->
+         <td>{{a.rdv.sexe}}</td>
+         <!--colonne 3:المريض//-->
+         <td> {{a.rdv.nom_complet_ar}}</td>
+    
+         <!--colonne 2:رقم الدخول//-->
+         <td>{{a.rdv.code_admission}}</td>
+         <!--colonne 1:statut**-->
+         <td>{{a.rdv.etat_examen_patient.designation_ar}}</td>
+        <!-- </div> -->
+        <td></td>
+</tr>
+</tbody>
+<!-- </div> -->
+</table>
+</div>
+
+<app-dicte-record *ngIf="showRecord"></app-dicte-record>
+<app-repot-form *ngIf="showForm"></app-repot-form>
+
+
+
+</div>
+
+

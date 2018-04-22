@@ -1,0 +1,68 @@
+<div id="sidebar" class="sidebar_right responsive   ace-save-state">
+<router-outlet name="compte" ></router-outlet>
+<!-- /.sidebar-shortcuts -->
+
+<div class="right">
+
+
+<ul dir="rtl"  class="nav nav-list">
+
+    <li class="active">
+      <a [routerLink]="" (click)=" getcompte_renduParCode_centre7()" >
+        <i class="icon-i-alternative-complementary"></i>
+        <span class="menu-text">الأشعة التداخلية</span>{{len7}}
+     </a>
+
+
+    </li>
+    <li class="active">
+      <a  [routerLink]="" (click)=" getcompte_renduParCode_centre6()">
+      <span class="menu-text">مركز أبحاث القلب </span> {{len6}}
+     </a>
+  
+     
+    </li>
+    <li class="active">
+      <a [routerLink]="" (click)=" getcompte_renduParCode_centre1()">
+        <span class="menu-text">العلاج الطبيعي</span>{{len1}}
+      </a>
+   </li>
+
+
+    <li class="active">
+      <a [routerLink]="" (click)=" getcompte_renduParCode_centre2()">
+        <span class="menu-text">موجات فوق الصوتية</span>{{len2}}
+      </a>
+   </li>
+
+
+    <li class="active">
+      <a  [routerLink]="" (click)=" getcompte_renduParCode_centre3()" >
+        <span class="menu-text">الرنين المغناطيسي</span>{{len3}}
+      </a>
+     </li>
+
+    <li class="active">
+      <a  [routerLink]="" (click)=" getcompte_renduParCode_centre4()"  >
+       <span class="menu-text">الأشعة السينية</span>{{len4}}
+      </a>
+  
+      
+    </li>
+    <li class="active" >
+      <a [routerLink]=""     (click)=" getcompte_renduParCode_centre5()" >
+        <span class="menu-text">الأشعة المقطعية</span>{{len5}}
+       </a>
+    </li>
+
+    <li class="active">
+      <a [routerLink]=""  (click)="getcompte_rendus()" >
+       <span class="menu-text">الكل</span> {{len8}}
+      </a>
+    </li>
+
+  </ul>
+  
+</div>
+
+</div>
