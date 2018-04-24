@@ -81,23 +81,11 @@ public class Compte_RenduRessource {
 	 
 	@RequestMapping(value = "/findByExample", method = RequestMethod.GET)
 	public Collection<Compte_RenduDTO> findByExample(
-			@RequestParam(name = "code_admission", required = false)
-			 String code_admission,
-			 @RequestParam(name = "nom_ar", required = false) String nom_ar,
-			 @RequestParam(name = "nom_ar_brut", required = false) String nom_ar_brut,
-						@RequestParam(name = "nom_complet_ar", required = false) String nom_complet_ar,
-			            @RequestParam(name = "nom_complet_en", required = false) String nom_complet_en,
-			            @RequestParam(name = "prenom_ar", required = false) String prenom_ar,
-						@RequestParam(name = "prenom_en", required = false)  String prenom_en,
-			            @RequestParam(name = "NomInterv", required = false) String NomInterv,
-			            @RequestParam(name = "NomIntervAr", required = false) String NomIntervAr,
-			            @RequestParam(name = "Designation_ar", required = false)  String Designation_ar,
-			            @RequestParam(name = "tel", required = false) String tel,
-			            @RequestParam(name = "code_patient", required = false)String code_patient ) {
+			@RequestParam(name = "code", required = false)
+			 String code
+			  ) {
 		
-		return compte_renduService.findByExample( code_admission, nom_ar, nom_ar_brut,
-				 nom_complet_ar, nom_complet_en, prenom_ar,
-				 prenom_en, NomInterv, NomIntervAr, Designation_ar, tel, code_patient);
+		return compte_renduService.findByExample(code);
 	}
 
 	@GetMapping("/{id}")
@@ -106,8 +94,6 @@ public class Compte_RenduRessource {
 		RestPreconditions.checkFound(compte_rendu, ENTITY_NAME + " not found");
 		return compte_rendu;
 	}
-
-
 	// recherche par code centre
 	@RequestMapping(value = "/findByCode_Centre/{code_centre}", method = RequestMethod.GET)
 	// @GetMapping("/compte/{designation}")

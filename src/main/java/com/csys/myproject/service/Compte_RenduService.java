@@ -49,39 +49,30 @@ public class Compte_RenduService {
 
 	
 	@Transactional(readOnly = true)
-	public Collection<Compte_RenduDTO> findByExample(String code_admission,String nom_ar,String nom_ar_brut,
-			String nom_complet_ar,String nom_complet_en,String prenom_ar,
-			String prenom_en,String NomInterv,String NomIntervAr,String Designation_ar,String tel,String code_patient) {
+	public Collection<Compte_RenduDTO> findByExample(String code) {
 		Compte_Rendu compte_rendu = new Compte_Rendu();
 		Rdv rdv = new Rdv();
-		Intervenant intervenant =new Intervenant();
-		Demande_Examen demande_Examen =new Demande_Examen();
+		//Intervenant intervenant =new Intervenant();
+	//	Demande_Examen demande_Examen =new Demande_Examen();
 		Admission admission =new Admission();
 		Etat_Examen_Patient etat_Examen_Patient =new Etat_Examen_Patient();
-		rdv.setcode_admission(code_admission);
-		rdv.setnom_ar(nom_ar);
-		rdv.setnom_ar_brut(nom_ar_brut);
-	
-		rdv.setnom_complet_ar(nom_complet_ar);
-		rdv.setnom_complet_en(nom_complet_en);
-		rdv.setprenom_ar(prenom_ar);
-		rdv.setprenom_en(prenom_en);
-//		a?.medecin?.nomInterv
-		
-		intervenant.setNomInterv(NomInterv);
-		intervenant.setNomIntervAr(NomIntervAr);
-		compte_rendu.setMedecin(intervenant);
+		rdv.setcode_admission(code);
+		rdv.setnom_ar(code);
+		rdv.setnom_ar_brut(code);
+		rdv.setnom_complet_ar(code);
+		rdv.setnom_complet_en(code);
+		rdv.setprenom_ar(code);
+		rdv.setprenom_en(code);
+//		intervenant.setNomInterv(NomInterv);
+//		intervenant.setNomIntervAr(NomIntervAr);
+//		compte_rendu.setMedecin(intervenant);
 		compte_rendu.setRdv(rdv);
-		//{{a.rdv.demande_examen.admission.tel}} 
-	//	a.rdv.etat_examen_patient.designation_ar
-		
-		etat_Examen_Patient.setDesignation_ar(Designation_ar);
+		etat_Examen_Patient.setDesignation_en(code);
 		rdv.setEtat_examen_patient(etat_Examen_Patient);
-		//
-		admission.settel(tel);
-		demande_Examen.setAdmission(admission);
-		rdv.setDemande_examen(demande_Examen);
-		compte_rendu.setcode_patient(code_patient);
+		admission.settel(code);
+	//	demande_Examen.setAdmission(admission);
+		//rdv.setDemande_examen(demande_Examen);
+		compte_rendu.setcode_patient(code);
 	//	compte_rendu.setnum_compte_rendu((long) 555);
 
 		ExampleMatcher matcher = ExampleMatcher.matchingAny().withStringMatcher(StringMatcher.CONTAINING );
