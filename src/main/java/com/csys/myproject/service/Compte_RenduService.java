@@ -77,7 +77,7 @@ public class Compte_RenduService {
 		
 		etat_Examen_Patient.setDesignation_ar(Designation_ar);
 		rdv.setEtat_examen_patient(etat_Examen_Patient);
-		
+		//
 		admission.settel(tel);
 		demande_Examen.setAdmission(admission);
 		rdv.setDemande_examen(demande_Examen);
