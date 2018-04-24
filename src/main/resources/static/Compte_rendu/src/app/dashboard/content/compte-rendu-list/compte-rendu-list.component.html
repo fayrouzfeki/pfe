@@ -162,7 +162,7 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
           <th> كاتب التقرير</th>
           <th> عدد الإملاءات</th>
           <th> status Cr Text</th>
-          <th> المريض المصاب</th>
+         
           <th> تاريخ الطلب </th>
           <th>تأكيد الإنجاز </th>
           <th> الصورة</th>
@@ -217,6 +217,7 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
          <!--colonne 25:  status Cr Text-->
          <td>{{a.ecrit}}</td>
          <!--colonne 24: المريض المصاب   -->
+        
          <!--colonne 23: الطلب   تاريخ   -->
          <td> {{a.rdv.date_rdv.year}}/{{a.rdv.date_rdv.month}}/{{a.rdv.date_rdv.dayOfMonth}} {{a.rdv.heure_rdv.hour}}: {{a.rdv.heure_rdv.minute}}:{{a.rdv.heure_rdv.second}}{{a.rdv.heure_rdv.nano}}
          <!--colonne 22:   الإنجاز تأكيد  -->
@@ -267,10 +268,33 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
          <!--colonne 1:statut**-->
          <td>{{a.rdv.etat_examen_patient.designation_ar}}</td>
         <!-- </div> -->
-        <td></td>
+        
 </tr>
 </tbody>
 <!-- </div> -->
+</table>
+<table  class="table table-bordered">
+    <thead>
+    <tr>
+        <th>CodeNatureCentre </th>
+        <th> الموعد المقبل </th>
+        <th> في الإنتظار  </th>
+        <th></th>
+       <th> الجهاز</th>
+       </tr>
+     </thead>
+
+<tbody > 
+    <tr  *ngFor="let a of compte_rendus" >
+        <td>{{a.rdv.demande_examen.nature}}</td>
+        <td></td>
+        <td></td>
+        <td><img src="../../../../assets/images/avatars/cercle.png" style="width: 15px" height="15px"></td>
+       <td>{{a.rdv.code_centre.designationAr}}</td>
+      
+       </tr>
+  </tbody>
+
 </table>
 </div>
 
