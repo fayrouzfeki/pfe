@@ -104,13 +104,14 @@ dateDiff(dateold, datenew)
         console.log(error);
       });
     }
-     getcompte_renduParCode_centre(code: Number): void {
-      this._compte_renduservice. getcompte_renduParCode_centre(code).subscribe( data => {
-          this.compte_rendus=data;
-          console.log(Error);
-        });
-      };
-
+   
+      
+      getcompte_renduParCode_centre(code: Number): void {
+        this._compte_renduservice. getcompte_renduParCode_centre(code).subscribe( data => {
+            this.compte_rendus=data;
+            console.log(Error);
+          });
+        };
       getcompte_renduParPeriode(d2:String,d3:String): void {
         this._compte_renduservice.getcompte_renduParPeriode(d2,d3).subscribe( data => {
             this.compte_rendus=data;
@@ -258,6 +259,12 @@ dateDiff(dateold, datenew)
                                       console.log(Error);
                                     });
                                   };
+                                  getcompte_renduParCodeExemple(code: String): void {
+                                    this._compte_renduservice.getcompte_renduParCodeExemple(code).subscribe( data => {
+                                        this.compte_rendus=data;
+                                        console.log(Error);
+                                      });
+                                    };
 
                                 
 
