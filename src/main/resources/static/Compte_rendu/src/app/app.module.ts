@@ -21,6 +21,7 @@ import { CompteRenduListComponent } from './dashboard/content/compte-rendu-list/
 import { CompteRendueService } from './providers/compte-rendue.service';
 import { RightService } from './providers/right.service';
 import { IntervenantService } from './providers/intervenant.service';
+
 import { IntervenantListComponent } from './dashboard/content/intervenant-list/intervenant-list.component';
 import { AuthComponent } from './auth/auth.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
