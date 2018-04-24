@@ -70,7 +70,14 @@ export class CompteRendueService {
   //   return this._http.get(this.baseUrl+'/findByCodeAdmission1/'+code_admission+'?'+'dure='+dure,this.options).map((response:Response)=>response.json())
   //     .catch(this.errorHandler);   
   // }
-  
+  //findByExample
+  // findByExample?code_admission=6039
+  // /findByExample/?55
+  getcompte_renduParCodeExemple(code:String){
+    return this._http.get(this.baseUrl+'/findByExample'+'?'+'code='+code,this.options).map((response:Response)=>response.json())
+      .catch(this.errorHandler);
+
+  }
   getcompte_renduParCodePatient(code_patient:String){
     return this._http.get(this.baseUrl+'/findByCode_patient/'+code_patient,this.options).map((response:Response)=>response.json())
       .catch(this.errorHandler);
