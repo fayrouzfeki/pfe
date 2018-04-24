@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-///tablehhhjjjjh
+///ta
 
 @Entity
 @Table(name = "compte_rendu",schema="centre")
