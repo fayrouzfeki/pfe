@@ -1,38 +1,38 @@
-
+<!-- 
 <div class="row">
-<div class=" col-md-6">
-    <table border="2">
-        <thead>
-        <tr>
-                <th>CodeNatureCentre </th>
-                <th> الموعد المقبل </th>
-                <th> في الإنتظار  </th>
-               <th> </th>
-                 <th> الجهاز</th>
+        <div class=" col-md-6">
+            <table border="2">
+                <thead>
+                <tr>
+                        <th>CodeNatureCentre </th>
+                        <th> الموعد المقبل </th>
+                        <th> في الإنتظار  </th>
+                       <th> </th>
+                         <th> الجهاز</th>
+                </tr>
+                 </thead>
+                  <tbody > 
+                    <tr  *ngFor="let a of compte_rendus" >
+          <td>{{a.CodeNatureCentre}}</td>
+          <td> {{a.rdv.nom_complet_ar}}</td>
+          <td>{{a.rdv.demande_examen.admission.medecin_traitant.nomIntervAr}}</td>
+          <td><img src="../../../assets/images/avatars/cercle.png" style="width: 15px" height="15px"></td>
+           <td></td>
         </tr>
-         </thead>
-          <tbody > 
-            <tr  *ngFor="let a of compte_rendus" >
-  <td>{{a.CodeNatureCentre}}</td>
-  <td> {{a.rdv.nom_complet_ar}}</td>
-  <td></td>
-  <td><img src="../../../assets/images/avatars/cercle.png" style="width: 15px" height="15px"></td>
-   <td></td>
-</tr>
-</table>
-
-
-
-
-       </div>
-
-       
-     <div class=" col-md-6">
-          <table border="2">
-              <tr>
-                  زيارات سابقة
-              </tr>
-              </table>
-     </div>
-</div>
-
+        </table>
+        
+        
+        
+        
+               </div>
+        
+               
+             <div class=" col-md-6">
+                  <table border="2">
+                      <tr>
+                          زيارات سابقة
+                      </tr>
+                      </table>
+             </div>
+        </div>
+         -->

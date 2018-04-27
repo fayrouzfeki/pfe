@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { CompteRendueService } from '../../../providers/compte-rendue.service';
 import { CompteRendue } from '../../../interfaces/compte-rendue';
@@ -17,8 +17,10 @@ import { IntervenantService } from '../../../providers/intervenant.service';
 export class CompteRenduListComponent implements OnInit {
  @Input() reviews:number;
  @Output()
+ @ViewChild('t1') t1;
  change: EventEmitter<number> = new EventEmitter<number>();
   intervenants: Intervenant;
+  isNull = false;
   private compte_rendus:CompteRendue[];
 
 
@@ -65,12 +67,31 @@ var curretTime = new Date()
     this.minute=curretTime.getMinutes();
     this.second=curretTime.getSeconds(); 
   };
-  
-  onShowRecord(pane) {
-    this.showTab = false;
-        if(pane === "record") this.showRecord = true;
-        if(pane === "pdf") this.showForm = true;
+
+
+
+
+//onShowRecord(pane) {
+  //  this.showTab = false;
+    //    if(pane === "record") this.showRecord = true;
+   //     if(pane === "pdf") this.showForm = true;
+  //}
+onShowRecord(pane) {
+   this.showTab = false;
+      if(pane === "record") 
+      {
+        console.log(pane);
+        this.showRecord = true;
+      }
+       if(pane === "pdf")
+      {
+        console.log(pane);
+        this.showForm = true;
+      } 
   }
+
+
+
   toggleElement(){
     if(this.hideElement){
         this.hideElement = false;}
@@ -260,13 +281,61 @@ dateDiff(dateold, datenew)
                                     });
                                   };
                                   getcompte_renduParCodeExemple(code: String): void {
+                                    if(code == null || code == '') this.isNull = true;
                                     this._compte_renduservice.getcompte_renduParCodeExemple(code).subscribe( data => {
                                         this.compte_rendus=data;
                                         console.log(Error);
                                       });
                                     };
+                //export csv
 
-                                
+ download_csv(csv, filename) {
+  var csvFile;
+  var downloadLink;
 
-                                                  
+  // CSV FILE
+  csvFile = new Blob([csv], {type: "text/csv"});
+
+  // Download link
+  downloadLink = document.createElement("a");
+
+  // File name
+  downloadLink.download = filename;
+
+  // We have to create a link to the file
+  downloadLink.href = window.URL.createObjectURL(csvFile);
+
+  // Make sure that the link is not displayed
+  downloadLink.style.display = "none";
+
+  // Add the link to your DOM
+  document.body.appendChild(downloadLink);
+
+  // Lanzamos
+  downloadLink.click();
+}
+
+ export_table_to_csv(html, filename) {
+var csv = [];
+var rows = document.querySelectorAll("table tr");
+
+  for (var i = 0; i < rows.length; i++) {
+  var row = [], cols = rows[i].querySelectorAll("td, th");
+  
+      for (var j = 0; j < cols.length; j++) 
+          row.push(cols[j].innerHTML);
+      
+  csv.push(row.join(","));		
+}
+
+  // Download CSV
+ (csv.join("\n"), filename);
+}
+
+ function () {
+  var html = document.querySelector("table").outerHTML;
+  //export_table_to_csv(html, "table.csv");
+}
+                         
+
 }

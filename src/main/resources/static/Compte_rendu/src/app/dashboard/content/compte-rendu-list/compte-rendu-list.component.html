@@ -2,22 +2,16 @@
 <!--a-->
 <!-- recherhce--------mariem -->
 <div class="row">
-
           <div class=" col-md-2">
-                    <div class="row">
-                              
                           <select 
                            #inter  (change)="getcompte_renduParNomintervenant($event.target.value)">
                               <option class="dropdown-item" role="presentation" href="#" value="null">Doctor</option>
                             <option  *ngFor="let i of intervenants">{{i.nomIntervAr}}</option>
                         </select>   
-                        <label>الطبيب</label>   
-            </div>
+                        <label> : الطبيب</label>   
           </div>
 <div class="col-md-1"></div>
-
           <div class="col-md-2">
-            <div class="row">
                        <select class="dropdown" #d4 (change)="getcompte_renduParDure($event.target.value)">
                           <option #op1 class="dropdown-item" role="presentation" href="#"  >التاريخ</option>
                           <option class="dropdown-item" role="presentation" href="#" value="0">اليوم</option>
@@ -30,47 +24,23 @@
                           <option #op class="dropdown-item" role="presentation" href="#" value="0" >periode</option>
                         </select>
                         <label> : إبتداء من</label>  
-            </div>
           </div>
-      
           <div class="col-md-1"></div>
-
           <div class=" col-md-6">
-
           <!-- seconde date input (ngIf) -->
         <div *ngIf="op.selected==true;else elseBlock">
         <input #d3  type="Date" (change)="getcompte_renduParPeriode(d2.value.toString(),d3.value.toString())">  <label>  :إلى</label> 
-       
+      
       <input #d2 type="Date" > <label>:من  </label>
-                 
-                          
       <!-- <input type="search" class="form-control input-sm"  aria-controls="example" #t1 type="text" style="margin:4px;font-size:10px;width:100px;" placeholder="رقم الدخول "  class="form-control"    (change)="getcompte_renduParCodeAdmission($event.target.value,d2.value.toString(),d3.value.toString(),inter.value)">-->
-     
-     
       </div>
-       
            <!-- /seconde date input (ngIf) -->
-
-      <!-- info-bull -->
-       <!-- <ng-template #elseBlock> 
-        <div class="element">
-         
-          <div class="infobulle">
-              رقم الدخول
-              رقم المريض 
-               إسم المريض 
-          </div>	
-        </div> 
-        </ng-template> 
-      <!-- /info-bull -->
-
 <!-- entering number -->
-<div class="col-md-14">
+<div>
    <input type="search" 
-    #t1 type="text" placeholder="رقم الدخول "  
+    #t1 type="text" placeholder="رقم الدخول "  name="search"
     (change)="getcompte_renduParCodeExemple($event.target.value)"
 >
- 
 <label data-toggle="tooltip" data-placement="right" title="رقم الدخول
 رقم المريض 
  إسم المريض "> 
@@ -78,27 +48,24 @@
  </label>
 </div>
 <!--/ entering number -->
-
-
 <!-- birthday input -->
-<label> تاريخ الولادة</label>
-<div class="align-items-end col-md-6">
+<label>: تاريخ الولادة</label>
+<div class="align-items-end">
 <input #DN type="Date" name="date" id="date" (change)="getcompte_renduParDatenaissance($event.target.value.toString())"/>                             
  </div>
 
 <!-- /birthday input -->
             </div>
-
 </div>
 
+<div class="row"><div *ngIf="isNull" role="alert">danger!!!!!!!</div></div>
 <!-- checkbox zone-- mariem -->
 <div class="row">  
     
      <div class="row pull-right">
-       <label>  : حالة تقرير الطبي</label> 
+       <label> : حالة تقرير الطبي</label> 
      </div>
-       <div class="row pull-left" style="right: 5%">
-
+       <div class="row pull-left">
           لم يتم الطباعة
           <input type="checkbox" id="checkbox3" 
              name="checkbox3" value="checkbox3" data-md-icheck 
@@ -157,7 +124,7 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
     <thead>
       <tr>
           <th>actions</th>
-          <th>الدرجة </th>
+          <th >الدرجة </th>
           <th> الطبيب المعالج</th>
           <th> كاتب التقرير</th>
           <th> عدد الإملاءات</th>
@@ -201,13 +168,21 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <!-- <li (click)="onShowPane("record")"><a> dicter</a></li>
-                    <li role="separator" class="divider"></li>
+                        
+                      <li ><a (click)="onShowRecord('pdf')"> إضافة</a></li>  
+                   <li role="separator" class="divider">
+                      <li ><a (click)="onShowRecord('record')"> بداية الإملاء</a></li>
+                      <li ><a> </a></li>   
+                      <li ><a> الإستماع إلى الإملاء </a></li>   
+                      <li ><button  (click)="export_table_to_csv(html, filename)">export Excel </button></li>   
+                    
+                 <!-- <li><a (click)="onShowRecord()"></a></li>
+                    <!--<li role="separator" class="divider"></li>
                     <li (click)="onShowPane("pdf")"><a> as PDF </a></li> -->
                   </ul>
                 </div>
           </td> 
-         <td>{{a.rdv.demande_examen.degre_demande.designation_ar}} </td>
+         <td >{{a.rdv.demande_examen.degre_demande.designation_ar}} </td>
          <!--colonne 29: الطبيب المعالج -->
          <td>{{a.rdv.demande_examen.admission.medecin_traitant.nomIntervAr}} </td>
          <!--colonne 27: التقرير كاتب -->
@@ -273,6 +248,7 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
 </tbody>
 <!-- </div> -->
 </table>
+<div class=" col-md-6">
 <table  class="table table-bordered">
     <thead>
     <tr>
@@ -291,18 +267,40 @@ value="checkbox4" (change)="getEtatPar_Etat_Patient_En_cour()"
         <td></td>
         <td><img src="../../../../assets/images/avatars/cercle.png" style="width: 15px" height="15px"></td>
        <td>{{a.rdv.code_centre.designationAr}}</td>
-      
+  
        </tr>
   </tbody>
 
 </table>
-</div>
+<div id="main">
+  this is content of div
+ </div>
+<!--alert si champs vide tester -->
+<!--<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
+ 
+
+
+<input type="text" name="champ" id="champ" value="" (click)="verif_champ(champ)">pp
+  <div  class="alert alert-danger alert-dismissible fade in" *ngIf="a.value==null">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>!! خطأ  في البحث</strong> يجب تحديد معيار للبحث على الأقل
+  </div>
+
+
+<!--//alert si champs vide tester-->
+
+</div>
+</div>
 <app-dicte-record *ngIf="showRecord"></app-dicte-record>
 <app-repot-form *ngIf="showForm"></app-repot-form>
-
-
-
 </div>
 
 

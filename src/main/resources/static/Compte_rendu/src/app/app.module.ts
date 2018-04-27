@@ -31,7 +31,8 @@ import { DicteRecordComponent } from './dashboard/content/compte-rendu-list/dict
 import { RepotFormComponent } from './dashboard/content/compte-rendu-list/repot-form/repot-form.component';
 const routes = [
   { path: 'compte-rendu', component: CompteRenduListComponent},
-  { path: 'demande-non-prog', component: DemandesNonProgrammeComponent}
+  { path: 'demande-non-prog', component: DemandesNonProgrammeComponent},
+  
 ]
 
 @NgModule({
